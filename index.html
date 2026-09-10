@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#833ab4">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<meta name="mobile-web-app-capable" content="yes">
+<title>VIT Pulse</title>
+<style>
+:root{--bg:#faf8fc;--card:#fff;--ink:#17121f;--muted:#7b7185;--purple:#833ab4;--pink:#e1306c;--orange:#f77737;--yellow:#fcaf45;--navy:#17101d;--line:#eadfeb;--grad:linear-gradient(135deg,#833ab4 0%,#e1306c 48%,#f77737 78%,#fcaf45 100%)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+button,select{font:inherit}.app{max-width:620px;margin:auto;min-height:100vh;padding-bottom:90px}
+header{background:linear-gradient(150deg,#405de6 0%,#833ab4 38%,#e1306c 67%,#f77737 86%,#fcaf45 100%);color:#fff;padding:22px 18px 26px;border-radius:0 0 30px 30px;box-shadow:0 12px 30px #833ab430}
+.brand{display:flex;align-items:center;gap:11px;font-size:22px;font-weight:900}.logo{width:38px;height:38px;border-radius:12px;background:#ffffff24;border:1px solid #ffffff35;display:grid;place-items:center}.logo span{font-size:20px}.gear{margin-left:auto;width:42px;height:42px;border:0;border-radius:14px;background:#ffffff13;color:#fff;font-size:22px}.brandrow{display:flex;align-items:center;gap:8px}.install{display:none;width:42px;height:42px;border:0;border-radius:14px;background:#ffffff1f;color:#fff;font-size:20px}.install.show{display:block}.date{margin-top:22px;color:#aeb9cc;font-size:13px}.clock{font-size:27px;font-weight:900;margin-top:2px}
+main{padding:0 15px}.hero{margin-top:0;transform:translateY(-1px);background:var(--grad);color:white;border-radius:24px;padding:19px;box-shadow:0 14px 32px #833ab435;min-height:165px}.eyebrow{font-size:12px;font-weight:850;letter-spacing:.7px;opacity:.82}.subject{font-size:26px;font-weight:950;margin-top:4px}.meta{font-size:13px;opacity:.9;margin-top:3px}.heroBottom{display:flex;justify-content:space-between;align-items:end;margin-top:15px}.count{font-size:32px;font-weight:950;line-height:1}.sub{font-size:11px;opacity:.8;margin-top:3px}.room{background:#ffffff20;border:1px solid #ffffff2d;border-radius:13px;padding:8px 11px;text-align:right}.room small{display:block;font-size:10px;opacity:.75}.room b{font-size:15px}
+.section{margin-top:21px}.head{display:flex;align-items:center;justify-content:space-between;margin:0 2px 10px}.head h2{font-size:19px;margin:0;font-weight:900}.weekctrl{display:flex;align-items:center;gap:6px}.weekctrl button{width:34px;height:34px;border:0;border-radius:11px;background:#fff;box-shadow:0 5px 18px #15253a10;font-size:20px}.weekrange{font-size:11px;color:var(--muted);font-weight:800;min-width:115px;text-align:center}
+.days{display:flex;gap:7px;overflow-x:auto;scrollbar-width:none}.days::-webkit-scrollbar{display:none}.day{min-width:64px;padding:9px 5px;border:1px solid var(--line);background:#fff;border-radius:15px;text-align:center}.day b{display:block;font-size:11px;color:var(--muted)}.day strong{font-size:18px}.day.active{background:#f7eafa;border-color:#c99be2;color:var(--purple)}.day.dot:after{content:"";display:block;margin:3px auto 0;width:5px;height:5px;border-radius:50%;background:var(--purple)}
+.timeline:before{content:"";position:absolute;left:24px;top:9px;bottom:9px;width:2px;background:#dce5f0}.timeline{position:relative}.item{position:relative;display:grid;grid-template-columns:49px 1fr;gap:10px;margin-bottom:10px}.node{width:18px;height:18px;background:#dce5f0;border:4px solid var(--bg);border-radius:50%;margin:9px auto;z-index:1}.item.now .node{background:var(--pink)}.item.done{opacity:.46}.card{background:#fff;border:1px solid var(--line);border-radius:17px;padding:13px;box-shadow:0 4px 15px #17283d08}.item.now .card{background:#fff4f8;border-color:#ed9db9;box-shadow:0 7px 20px #e1306c18}.row{display:flex;justify-content:space-between}.time{font-size:12px;font-weight:850;color:var(--muted)}.tag{font-size:10px;color:var(--purple);font-weight:900;background:#f4e8f8;padding:4px 7px;border-radius:8px}.name{font-size:16px;font-weight:900;margin-top:4px}.details{font-size:12px;color:var(--muted);margin-top:4px}.empty{padding:25px;text-align:center;background:#fff;border:1px dashed #cbd6e5;border-radius:17px;color:var(--muted)}
+.installCard{background:#fff;border:1px solid var(--line);border-radius:20px;padding:16px;box-shadow:0 8px 25px #17283d0c;margin-bottom:12px}.installCard b{font-size:14px}.installCard p{margin:4px 0 12px;font-size:11px;color:var(--muted)}.installAction{border:0;background:var(--grad);color:#fff;border-radius:12px;padding:10px 14px;font-weight:850;width:100%}.settings{background:#fff;border-radius:20px;padding:0 15px;box-shadow:0 8px 25px #17283d0c}.setting{display:flex;align-items:center;justify-content:space-between;padding:15px 0;border-bottom:1px solid var(--line)}.setting:last-child{border:0}.setting b{font-size:14px}.setting p{margin:3px 0 0;font-size:11px;color:var(--muted)}.toggle{width:49px;height:29px;border:0;border-radius:20px;background:#d8e0ea;padding:3px}.toggle i{display:block;width:23px;height:23px;border-radius:50%;background:#fff;transition:.2s}.toggle.on{background:var(--purple)}.toggle.on i{transform:translateX(20px)}select{border:1px solid var(--line);background:#f0f4f9;border-radius:11px;padding:9px 10px;font-weight:800}
+.status{font-size:11px;color:var(--muted);margin-top:10px;text-align:center}.bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(620px,100%);height:72px;background:#fffffff2;backdrop-filter:blur(15px);border-top:1px solid var(--line);display:flex;justify-content:space-around;padding:8px 20px calc(8px + env(safe-area-inset-bottom));z-index:10}.nav{border:0;background:none;color:#8793a5;font-size:10px;font-weight:850}.nav div{font-size:22px;line-height:24px}.nav.active{color:var(--purple)}
+.toast{position:fixed;left:50%;bottom:82px;transform:translate(-50%,15px);background:#111827;color:#fff;padding:11px 15px;border-radius:12px;font-size:12px;opacity:0;transition:.2s;z-index:20}.toast.show{opacity:1;transform:translate(-50%,0)}
+</style>
+</head>
+<body>
+<div class="app">
+<header><div class="brandrow"><div class="brand"><div class="logo"><span>▤</span></div>VIT Pulse</div><button class="install" id="installBtn" onclick="installApp()" aria-label="Add VIT Pulse to home screen">＋</button><button class="gear" onclick="goSettings()" aria-label="Open settings">⚙</button></div><div class="date" id="date"></div><div class="clock" id="clock"></div></header>
+<main>
+<section class="hero" id="hero"></section>
+<section class="section"><div class="head"><h2>Week</h2><div class="weekctrl"><button onclick="moveWeek(-1)">‹</button><span class="weekrange" id="range"></span><button onclick="moveWeek(1)">›</button></div></div><div class="days" id="days"></div></section>
+<section class="section"><div class="head"><h2 id="timelineTitle">Today's timeline</h2><span id="countLabel" class="weekrange"></span></div><div class="timeline" id="timeline"></div></section>
+<section class="section" id="settings"><div class="head"><h2>Notifications</h2></div><div class="installCard" id="installCard"><b>Add VIT Pulse to your home screen</b><p>Open it like an app without searching for the browser page again.</p><button class="installAction" onclick="installApp()">＋ Add to Home Screen</button></div><div class="settings">
+<div class="setting"><div><b>Class reminders</b><p>Notification before each class</p></div><button class="toggle" id="toggle" onclick="toggleNotifications()"><i></i></button></div>
+<div class="setting"><div><b>Reminder time</b><p>How early should I alert you?</p></div><select id="mins" onchange="setMins()"><option value="5">5 min</option><option value="10">10 min</option><option value="15">15 min</option><option value="30">30 min</option></select></div>
+</div><div class="status" id="timeStatus"></div></section>
+</main>
+<nav class="bottom"><button class="nav active" onclick="home()"><div>⌂</div>Home</button><button class="nav" onclick="today()"><div>▣</div>Today</button><button class="nav" onclick="goSettings()"><div>♧</div>Alerts</button></nav>
+<div class="toast" id="toast"></div>
+</div>
+<script>
+const S={
+Monday:[["08:30","10:00","CSE1021","AB02","219","A11"],["11:40","13:10","ENG1004","AB","418","C11"],["13:15","14:45","MAT1003","AB","502","A21"],["14:50","16:20","CSE1021","AB02","219","A14"]],
+Tuesday:[["08:30","10:00","CSE1021","AB02","219","D11"],["13:15","14:45","MAT1003","AB","502","D21"],["14:50","16:20","CHY1006","AB","520","E14"]],
+Wednesday:[["08:30","10:00","CSE1021","AB02","219","A12"],["11:40","13:10","ENG1004","AB","418","C12"],["13:15","14:45","MAT1003","AB","502","A22"],["14:50","16:20","MAT1003","AB","502","B14"]],
+Thursday:[["08:30","10:00","CSE1021","AB02","219","D12"],["13:15","14:45","MAT1003","AB","502","D22"]],
+Friday:[["08:30","10:00","CSE1021","AB02","219","A13"],["13:15","14:45","MAT1003","AB","502","A23"],["16:25","17:55","CHY1006","AB","520","B23"]],
+Saturday:[],Sunday:[]};
+const DN=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"], SN=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+let selected=new Date(), week=0, sent={};
+selected.setHours(0,0,0,0);
+const $=x=>document.getElementById(x);
+function esc(x){return String(x).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}
+function dname(d){return DN[d.getDay()]}
+function at(d,t){let x=new Date(d),p=t.split(":");x.setHours(+p[0],+p[1],0,0);return x}
+function same(a,b){return a.toDateString()===b.toDateString()}
+function fmt(t){let p=t.split(":"),h=+p[0],m=p[1],ap=h>=12?"PM":"AM";h=h%12||12;return h+":"+m+" "+ap}
+function monday(d){let x=new Date(d),n=x.getDay();x.setDate(x.getDate()+(n===0?-6:1-n));return x}
+function human(ms){let s=Math.max(0,Math.floor(ms/1000)),h=Math.floor(s/3600);s%=3600;let m=Math.floor(s/60);s%=60;return h?`${h}h ${m}m ${s}s`:m?`${m}m ${s}s`:`${s}s`}
+function classes(d){return S[dname(d)]||[]}
+function nextClass(now){
+ for(let off=0;off<8;off++){let d=new Date(now);d.setDate(d.getDate()+off);for(let c of classes(d)){let st=at(d,c[0]),en=at(d,c[1]);if(now>=st&&now<en)return {c,d,st,en,current:true};if(st>now)return {c,d,st,en,current:false}}}return null
+}
+function renderHero(){
+ let now=new Date(),x=nextClass(now);
+ if(!x){$("hero").innerHTML='<div class="eyebrow">NEXT CLASS</div><div class="subject">No more classes</div><div class="meta">Enjoy the rest of your day 🎉</div>';return}
+ let c=x.c,b=`${c[3]}-${c[4]}`;
+ $("hero").innerHTML=`<div class="eyebrow">${x.current?"CLASS IN PROGRESS":"NEXT CLASS"}</div><div class="subject">${esc(c[2])}</div><div class="meta">${x.current?"Ends":"Starts"} at ${fmt(x.current?c[1]:c[0])}${!same(x.d,now)?" · "+dname(x.d):""}</div><div class="heroBottom"><div><div class="count">${human((x.current?x.en:x.st)-now)}</div><div class="sub">${x.current?"time remaining":"until class starts"}</div></div><div class="room"><small>ROOM</small><b>${b}</b><small>Slot ${esc(c[5])}</small></div></div>`;
+}
+function renderDays(){
+ let base=monday(selected);base.setDate(base.getDate()+week*7);let end=new Date(base);end.setDate(base.getDate()+6);
+ $("range").textContent=base.toLocaleDateString([],{day:"numeric",month:"short"})+" – "+end.toLocaleDateString([],{day:"numeric",month:"short"});
+ $("days").innerHTML=Array.from({length:7},(_,i)=>{let d=new Date(base);d.setDate(base.getDate()+i);return `<button class="day ${same(d,selected)?"active ":""}${classes(d).length?"dot":""}" onclick="pick('${d.toISOString()}')"><b>${SN[d.getDay()]}</b><strong>${d.getDate()}</strong></button>`}).join("");
+}
+function pick(iso){selected=new Date(iso);selected.setHours(0,0,0,0);render()}
+function renderTimeline(){
+ let now=new Date(),a=classes(selected);$("timelineTitle").textContent=same(selected,now)?"Today's timeline":dname(selected)+" timeline";$("countLabel").textContent=a.length+" "+(a.length===1?"class":"classes");
+ if(!a.length){$("timeline").innerHTML=`<div class="empty">No classes scheduled for ${dname(selected)} 🎉</div>`;return}
+ $("timeline").innerHTML=a.map(c=>{let st=at(selected,c[0]),en=at(selected,c[1]),n=now>=st&&now<en,done=same(selected,now)&&now>=en;return `<div class="item ${n?"now ":""}${done?"done":""}"><div class="node"></div><div class="card"><div class="row"><span class="time">${fmt(c[0])} – ${fmt(c[1])}</span>${n?'<span class="tag">NOW</span>':done?'<span class="tag">DONE</span>':""}</div><div class="name">${esc(c[2])}</div><div class="details">Building ${esc(c[3])} · Room ${esc(c[4])} · Slot ${esc(c[5])}</div></div></div>`}).join("");
+}
+function renderHeader(){
+ let n=new Date();$("date").textContent=n.toLocaleDateString([],{weekday:"long",day:"numeric",month:"long"});$("clock").textContent=n.toLocaleTimeString([],{hour:"2-digit",minute:"2-digit",second:"2-digit"});$("timeStatus").textContent="✓ Using your phone's automatic date, time and timezone";
+}
+function renderSettings(){$("mins").value=localStorage.mins||5;$("toggle").classList.toggle("on",localStorage.notify==="1")}
+function nativeSchedule(){
+ if(!(window.VITNative&&VITNative.isNative&&VITNative.isNative())) return;
+ let all=[]; Object.keys(S).forEach(name=>{let dow=DN.indexOf(name)+1;(S[name]||[]).forEach(c=>all.push({dow:dow,start:c[0],subject:c[2],building:c[3],room:c[4],slot:c[5]}));});
+ VITNative.enableReminders(JSON.stringify(all),+(localStorage.mins||5));
+}
+async function toggleNotifications(){
+ if(window.VITNative&&VITNative.isNative&&VITNative.isNative()){
+   localStorage.notify=localStorage.notify==="1"?"0":"1";
+   if(localStorage.notify==="1") nativeSchedule(); else VITNative.disableReminders();
+   renderSettings(); toast(localStorage.notify==="1"?"Native class reminders ON":"Class reminders OFF"); return;
+ }
+ if(!("Notification"in window)){toast("Notifications aren't supported here");return}
+ if(Notification.permission!=="granted"){let p=await Notification.requestPermission();if(p!=="granted"){toast("Please allow notifications in browser settings");return}}
+ localStorage.notify=localStorage.notify==="1"?"0":"1";renderSettings();toast(localStorage.notify==="1"?"Class reminders ON":"Class reminders OFF")
+}
+function setMins(){localStorage.mins=$("mins").value;if(localStorage.notify==="1"&&window.VITNative&&VITNative.isNative&&VITNative.isNative()) nativeSchedule();toast("Reminder: "+$("mins").value+" minutes before")}
+function reminders(){
+ if(window.VITNative&&VITNative.isNative&&VITNative.isNative()) return;
+ if(localStorage.notify!=="1"||Notification.permission!=="granted")return;
+ let now=new Date(),mins=+(localStorage.mins||5),key=now.toISOString().slice(0,10);
+ classes(now).forEach(c=>{let diff=at(now,c[0])-now,k=key+c[0]+c[2];if(diff>0&&diff<=mins*60000&&!sent[k]){sent[k]=1;new Notification(c[2]+" starts soon",{body:`${fmt(c[0])} · ${c[3]}-${c[4]} · Slot ${c[5]}`})}})
+}
+let deferredInstall=null;
+window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferredInstall=e;$("installBtn").classList.add("show");});
+window.addEventListener("appinstalled",()=>{deferredInstall=null;$("installBtn").classList.remove("show");toast("VIT Pulse added to your home screen ✓")});
+async function installApp(){
+ if(deferredInstall){deferredInstall.prompt();const r=await deferredInstall.userChoice;if(r.outcome!=="accepted")toast("You can install it anytime from the + button");return}
+ if(location.protocol!=="https:"&&location.hostname!=="localhost"){toast("Open this app from a hosted HTTPS link to install it");return}
+ toast("Use your browser menu → Add to Home screen");
+}
+function render(){renderHeader();renderHero();renderDays();renderTimeline();renderSettings()}
+function moveWeek(n){week+=n;let base=monday(selected);base.setDate(base.getDate()+week*7);selected=new Date(base);selected.setHours(0,0,0,0);render()}
+function today(){selected=new Date();selected.setHours(0,0,0,0);week=0;render();$("timeline").scrollIntoView({behavior:"smooth",block:"center"})}
+function home(){window.scrollTo({top:0,behavior:"smooth"})}
+function goSettings(){$("settings").scrollIntoView({behavior:"smooth",block:"center"})}
+function toast(t){$("toast").textContent=t;$("toast").classList.add("show");setTimeout(()=>$("toast").classList.remove("show"),2300)}
+if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}))}
+render();setInterval(()=>{renderHeader();renderHero();renderTimeline();reminders()},1000);
+</script>
+</body></html>
