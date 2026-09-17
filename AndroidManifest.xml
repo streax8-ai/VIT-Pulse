@@ -2,7 +2,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <application android:theme="@style/Theme.VITPulse" android:label="VIT Pulse" android:icon="@drawable/icon" android:allowBackup="true" android:supportsRtl="true">
+    <application android:theme="@style/Theme.VITPulse" android:label="VIT Pulse" android:icon="@drawable/ic_stat_vitpulse" android:allowBackup="true" android:supportsRtl="true">
         <activity android:name=".MainActivity" android:screenOrientation="portrait" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
