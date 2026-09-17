@@ -11,6 +11,80 @@ jobs:
       - name: Download project
         uses: actions/checkout@v4
 
+      - name: Create Android project structure
+        run: |
+          mkdir -p app/src/main/java/com/vitpulse/app
+          mkdir -p app/src/main/res/drawable
+          mkdir -p app/src/main/res/mipmap-hdpi
+          mkdir -p app/src/main/res/values
+          mkdir -p app/src/main/assets
+
+          cp MainActivity.java app/src/main/java/com/vitpulse/app/
+          cp BootReceiver.java app/src/main/java/com/vitpulse/app/
+          cp ClassReminderReceiver.java app/src/main/java/com/vitpulse/app/
+          cp NotificationScheduler.java app/src/main/java/com/vitpulse/app/
+
+          cp index.html app/src/main/assets/
+          cp icon.svg app/src/main/assets/
+
+          cp colors.xml app/src/main/res/values/
+          cp themes.xml app/src/main/res/values/
+          cp ic_stat_vitpulse.xml app/src/main/res/drawable/
+
+          cp AndroidManifest.xml app/src/main/
+
+      - name: Create Gradle settings
+        run: |
+          cat > settings.gradle <<'EOF'
+          pluginManagement {
+              repositories {
+                  google()
+                  mavenCentral()
+                  gradlePluginPortal()
+              }
+          }
+
+          dependencyResolutionManagement {
+              repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+              repositories {
+                  google()
+                  mavenCentral()
+              }
+          }
+
+          rootProject.name = "VIT-Pulse"
+          include(":app")
+          EOF
+
+      - name: Create root Gradle build
+        run: |
+          cat > build.gradle <<'EOF'
+          plugins {
+              id 'com.android.application' version '8.6.1' apply false
+          }
+          EOF
+
+      - name: Create app Gradle build
+        run: |
+          cat > app/build.gradle <<'EOF'
+          plugins {
+              id 'com.android.application'
+          }
+
+          android {
+              namespace 'com.vitpulse.app'
+              compileSdk 35
+
+              defaultConfig {
+                  applicationId 'com.vitpulse.app'
+                  minSdk 23
+                  targetSdk 35
+                  versionCode 1
+                  versionName '1.0'
+              }
+          }
+          EOF
+
       - name: Set up Java
         uses: actions/setup-java@v4
         with:
